@@ -1,0 +1,108 @@
+ from tkinter import *
+from tkinter import messagebox
+
+ 
+def calculate_res():
+      if female_rb.pack(side=RIGHT):
+         kg = float(weight_tf.get())
+         cm = int(height_tf.get())
+         age = int(age_tf.get())
+         res = 655.1+((9.563*kg)+(1.85*cm)-(4.676*age))
+         messagebox.showinfo("Результат", res)
+      elif male_rb.pack(side=LEFT):
+         kg = float(weight_tf.get())
+         cm = int(height_tf.get())
+         age = int(age_tf.get())
+         res = 66.5+((13.75*kg)+(5.003*cm)-(6.775*age))
+         messagebox.showinfo("Результат", res) 
+
+window = Tk()
+window.title('Калькулятор расчета нормы потребления калорий')
+window.geometry('450x180')
+
+var = IntVar() 
+frame = Frame(
+   window,
+   padx=10,
+   pady=10
+)
+frame.pack(expand=True)
+ 
+frame2 = Frame(
+
+    frame
+
+)
+
+frame2.grid(row=2, column=2, pady=5) 
+male_rb = Radiobutton(
+
+    frame2,
+
+    text = 'Мужчина',
+
+    variable = var,
+
+    value = 1,
+    command=calculate_res
+
+)
+
+male_rb.pack(side=LEFT)
+
+
+female_rb = Radiobutton(
+
+    frame2,
+
+    text = 'Женщина',
+
+    variable = var,
+
+    value = 2,
+     command=calculate_res
+
+)
+female_rb.pack(side=RIGHT)
+
+weight_lb = Label(
+   frame,
+   text="Введите свой вес(кг)  "
+)
+weight_lb.grid(row=3, column=1)
+ 
+height_lb = Label(  
+   frame,
+   text="Введите свой рост (см)  ",
+)
+height_lb.grid(row=4, column=1)
+
+age_lb = Label(
+   frame,
+   text="Введите свой возраст (лет)  ",
+)
+age_lb.grid(row=5, column=1)
+ 
+weight_tf = Entry(
+   frame,
+)
+weight_tf.grid(row=3, column=2, pady=5)
+ 
+height_tf = Entry(
+   frame,
+)
+height_tf.grid(row=4, column=2, pady=5)
+
+age_tf = Entry(
+   frame,
+)
+age_tf.grid(row=5, column=2, pady=5)
+ 
+cal_btn = Button(
+   frame,
+   text='Результат',
+   command=calculate_res
+)
+cal_btn.grid(row=6, column=2)
+ 
+window.mainloop()
